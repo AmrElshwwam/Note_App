@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:my_notes/controller/scrolling_category_controller.dart';
 import 'package:my_notes/core/constant/app_colors.dart';
 import 'package:my_notes/core/constant/app_theme.dart';
@@ -14,7 +15,7 @@ class ItemNoteHomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime dt = noteModel.dateTime;
     String dateNote = "${dt.day}-${dt.month}-${dt.year}";
-    String timeNote = "${dt.hour}:${dt.minute}";
+    String timeNote = DateFormat('hh:mm a').format(dt);
     bool isDarkMode = AppThemes.isDarkMode(context);
 
     final scrollingCategoryController =
@@ -58,7 +59,7 @@ class ItemNoteHomeWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      noteModel.titleNote,
+                      noteModel.titleNote, // Title Note,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -68,7 +69,7 @@ class ItemNoteHomeWidget extends StatelessWidget {
                       maxLines: 1,
                     ),
 
-                    // Lable Category
+                    //
                     Text(
                       scrollingCategoryController
                           .categoryList[noteModel.categoryNote]
@@ -85,9 +86,8 @@ class ItemNoteHomeWidget extends StatelessWidget {
                 ),
 
                 //
-                //
                 Text(
-                  noteModel.descriptionNote,
+                  noteModel.descriptionNote, // Description Note,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w400,
@@ -97,15 +97,12 @@ class ItemNoteHomeWidget extends StatelessWidget {
                   maxLines: 1,
                 ),
 
-                //
-                //
+                //-- Date & Time Note
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      // noteModel.timeAddNote,
-                       timeNote,
-                      
+                      timeNote,
                       style: TextStyle(
                         fontSize: 13,
                         color: isDarkMode ? Colors.white : AppColors.black,
@@ -117,7 +114,6 @@ class ItemNoteHomeWidget extends StatelessWidget {
 
                     //--
                     Text(
-                      // noteModel.dateAddNote,
                       dateNote,
                       style: TextStyle(
                         fontSize: 13,

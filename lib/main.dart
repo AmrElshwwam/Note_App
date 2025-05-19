@@ -17,15 +17,11 @@ void main() async {
   await initialServices();
   await GetStorage.init();
 
-  // 👇 تسجيل المتحكمات الأساسية قبل runApp
   Get.put<LanguageController>(LanguageController(), permanent: true);
   Get.put<ThemeController>(ThemeController());
 
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => const MyApp(), // Wrap your app
-    ),
+    DevicePreview(enabled: !kReleaseMode, builder: (context) => const MyApp()),
   );
 }
 

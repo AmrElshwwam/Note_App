@@ -5,7 +5,7 @@ import 'package:my_notes/core/constant/app_colors.dart';
 import 'package:my_notes/core/constant/app_theme.dart';
 import 'package:my_notes/view/widgets/add_note_widgets/appbar_add_note.dart';
 import 'package:my_notes/view/widgets/add_note_widgets/button_add_note.dart';
-import 'package:my_notes/view/widgets/add_note_widgets/container_add_category.dart';
+import 'package:my_notes/view/widgets/add_note_widgets/add_category_widget.dart';
 import 'package:my_notes/view/widgets/add_note_widgets/select_category_scroll.dart';
 import 'package:my_notes/view/widgets/add_note_widgets/text_field_description.dart';
 import 'package:my_notes/view/widgets/add_note_widgets/text_field_title.dart';
@@ -78,7 +78,7 @@ class AddNoteScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           //--
-                          ContainerAddCategory(),
+                          AddCategoryWidget(),
 
                           //--
                           SizedBox(width: 10),

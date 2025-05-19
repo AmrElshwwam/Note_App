@@ -29,14 +29,14 @@ class SearchScreen extends StatelessWidget {
                 if (searchController.searchController.text.isEmpty) {
                   return Center(
                     child: Text(
-                      "Please Enter Your Search",
+                      "Please Enter Your Search...",
                       style: TextStyle(fontSize: 18, color: AppColors.grey),
                     ),
                   );
                 } else if (searchController.searchList.isEmpty) {
                   return Center(
                     child: Text(
-                      "No Notes Found",
+                      "No Notes Found !",
                       style: TextStyle(fontSize: 18, color: AppColors.grey),
                     ),
                   );

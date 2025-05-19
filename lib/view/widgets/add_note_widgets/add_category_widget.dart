@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_notes/core/constant/app_colors.dart';
 import 'package:my_notes/view/widgets/add_note_widgets/show_modal_bottom_sheet.dart';
 
-class ContainerAddCategory extends StatelessWidget {
-  const ContainerAddCategory({
+class AddCategoryWidget extends StatelessWidget {
+  const AddCategoryWidget({
     super.key,
   });
 

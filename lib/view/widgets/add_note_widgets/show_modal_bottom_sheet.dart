@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_notes/controller/select_category_controller.dart';
 import 'package:my_notes/core/constant/app_colors.dart';
-import 'package:my_notes/view/widgets/add_note_widgets/button_add_note.dart';
-import 'package:my_notes/view/widgets/add_note_widgets/text_field_title.dart';
+import 'package:my_notes/core/function/snackbar_helper.dart';
+import 'package:my_notes/view/widgets/add_note_widgets/button_add_category.dart';
+import 'package:my_notes/view/widgets/add_note_widgets/textfield_add_category.dart';
 
 class ShowModalBottomSheet extends StatelessWidget {
   const ShowModalBottomSheet({super.key});
@@ -21,11 +22,15 @@ class ShowModalBottomSheet extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Align(
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 "Create Category",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.black,
+                ),
               ),
             ),
 
@@ -35,7 +40,7 @@ class ShowModalBottomSheet extends StatelessWidget {
 
             //
             //
-            TextFieldTitle(
+            TextFieldAddCategory(
               hintText: "Type the node title...",
               onChange: (value) {
                 newCategory = value;
@@ -44,18 +49,11 @@ class ShowModalBottomSheet extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            ButtonAddNote(
+            ButtonAddCategory(
               nameButton: "Create Category",
               onPressed: () {
                 if (newCategory == null || newCategory!.isEmpty) {
-                  Get.snackbar(
-                    "Error",
-                    "Please enter a category name",
-                    backgroundColor: AppColors.orange,
-                    colorText: AppColors.white,
-                    duration: const Duration(seconds: 1),
-                  );
-                  return;
+                  SnackbarHelper.error("Error", "Please enter a category name");
                 }
 
                 //---
@@ -67,7 +65,19 @@ class ShowModalBottomSheet extends StatelessWidget {
                   newCategory!,
                 );
 
-                Get.back();
+                SnackbarHelper.success("Success", "Category added", (
+                  status,
+                ) async {
+                  if (status == SnackbarStatus.CLOSED) {
+                    if (Get.isOverlaysOpen) {
+                      // لو في snack أو dialog مفتوح، اقفله
+                      Get.back(closeOverlays: true);
+                    } else {
+                      // يرجع للشاشة اللي قبل
+                      Get.back();
+                    }
+                  }
+                });
               },
             ),
 

@@ -7,14 +7,12 @@ import 'package:my_notes/core/constant/app_colors.dart';
 import '../../../core/function/snackbar_helper.dart';
 
 class ButtonAddNote extends StatelessWidget {
-  const ButtonAddNote({super.key, this.onPressed, required this.nameButton});
+  const ButtonAddNote({super.key, required this.nameButton});
 
   final String nameButton;
-  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    // NoteControllerImp noteController = Get.find<NoteControllerImp>();
     AddNoteControllerImp addNoteController = Get.find<AddNoteControllerImp>();
 
     SelectCategoryControllerImp selectCategoryController =

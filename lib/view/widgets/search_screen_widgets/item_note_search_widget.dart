@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:my_notes/controller/scrolling_category_controller.dart';
 import 'package:my_notes/core/constant/app_colors.dart';
 import 'package:my_notes/core/constant/app_theme.dart';
@@ -14,7 +15,7 @@ class ItemNoteSearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime dt = noteModel.dateTime;
     String dateNote = "${dt.day}-${dt.month}-${dt.year}";
-    String timeNote = "${dt.hour}:${dt.minute}";
+    String timeNote = DateFormat('hh:mm a').format(dt);
 
     bool isDarkMode = AppThemes.isDarkMode(context);
 
@@ -58,7 +59,7 @@ class ItemNoteSearchWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        noteModel.titleNote, // "Amro Medhat Emam",
+                        noteModel.titleNote, // Title Note,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -96,7 +97,7 @@ class ItemNoteSearchWidget extends StatelessWidget {
                 //
                 Expanded(
                   child: Text(
-                    noteModel.descriptionNote, //"17.st Elminyawee - Elshrabya",
+                    noteModel.descriptionNote, // Description Note,
                     style: TextStyle(
                       color: isDarkMode ? AppColors.white : Colors.black,
                       fontSize: 15,
@@ -107,14 +108,13 @@ class ItemNoteSearchWidget extends StatelessWidget {
                   ),
                 ),
 
-                //-- تاريخ وساعة النوت
+                //-- Date & Time Note
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     //--
                     Text(
-                      // noteModel.timeAddNote,
                       timeNote,
                       style: TextStyle(
                         fontSize: 13,
@@ -123,11 +123,10 @@ class ItemNoteSearchWidget extends StatelessWidget {
                     ),
 
                     //--
-                    SizedBox(width: 5),
+                    SizedBox(width: 10),
 
                     //--
                     Text(
-                      // noteModel.dateAddNote,
                       dateNote,
                       style: TextStyle(
                         fontSize: 13,

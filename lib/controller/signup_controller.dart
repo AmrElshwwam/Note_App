@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_notes/core/constant/strings_routes.dart';
+import 'package:my_notes/core/function/snackbar_helper.dart';
 import 'package:my_notes/data/services/services.dart';
 
 abstract class SignupController extends GetxController {
@@ -40,7 +41,25 @@ class SignupControllerImp extends SignupController {
 
       //?? المفروض هنا نعمل اتشيك ان الايميل اتنشئ بيه قبل كده ولا لاء
 
-      Get.offNamed(AppRoutes.signinScreen);
+      SnackbarHelper.success("Congratulations", "Successfully Created Account", (
+        status,
+      ) async {
+        if (status == SnackbarStatus.CLOSED) {
+          if (Get.isOverlaysOpen) {
+            //لو في snack أو dialog مفتوح، اقفله
+            //بيستخدم الـ closeOverlays: true عشان يقفل أي overlays مفتوحة
+            Get.back(closeOverlays: true);
+            //بيضمن إن الكود اللي بعده (في حالتنا Get.offNamed) يتنفذ بعد ما يتم
+            //إغلاق الـ overlay فعليًا في فريم جديد
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Get.offNamed(AppRoutes.signinScreen);
+            });
+          } else {
+            Get.offNamed(AppRoutes.signinScreen);
+          }
+        }
+      });
+
     }
   }
 

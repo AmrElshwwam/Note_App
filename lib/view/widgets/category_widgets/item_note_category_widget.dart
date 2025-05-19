@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:my_notes/controller/scrolling_category_controller.dart';
 import 'package:my_notes/core/constant/app_colors.dart';
 import 'package:my_notes/core/constant/app_theme.dart';
 import 'package:my_notes/data/models/note_model.dart';
@@ -15,7 +18,16 @@ class ItemNoteCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime dt = noteModel.dateTime;
+    String dateNote = "${dt.day}-${dt.month}-${dt.year}";
+    String timeNote = DateFormat(
+      'hh:mm a',
+    ).format(dt); 
+
     bool isDarkMode = AppThemes.isDarkMode(context);
+
+    final scrollingCategoryController =
+        Get.find<ScrollingCategoryControllerImp>();
 
     return InkWell(
       onTap: onTap,
@@ -29,11 +41,6 @@ class ItemNoteCategoryWidget extends StatelessWidget {
               offset: const Offset(0, 5),
               blurRadius: 5,
             ),
-            // BoxShadow(
-            //   color: Colors.grey.withValues(alpha: .4),
-            //   offset: const Offset(-1, -1),
-            //   blurRadius: 5,
-            // ),
           ],
         ),
         child: Padding(
@@ -43,15 +50,38 @@ class ItemNoteCategoryWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
 
             children: [
-              Text(
-                noteModel.titleNote, // "Amro Medhat Emam",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: isDarkMode ? AppColors.white : Colors.black,
-                ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      noteModel.titleNote, // Title Note,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: isDarkMode ? AppColors.white : Colors.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+
+                  //--
+                  SizedBox(width: 5),
+
+                  //--
+                  Text(
+                    scrollingCategoryController
+                        .categoryList[noteModel.categoryNote]
+                        .title,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.orange,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ],
               ),
 
               //
@@ -61,15 +91,45 @@ class ItemNoteCategoryWidget extends StatelessWidget {
               ),
 
               //
-              Text(
-                noteModel.descriptionNote, //"17.st Elminyawee - Elshrabya",
-                style: TextStyle(
-                  color: isDarkMode ? AppColors.white : Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
+              Expanded(
+                child: Text(
+                  noteModel.descriptionNote, // Description Note,
+                  style: TextStyle(
+                    color: isDarkMode ? AppColors.white : Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 9,
                 ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 9,
+              ),
+
+              //-- Date & Time Note
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  //--
+                  Text(
+                    timeNote,
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: isDarkMode ? Colors.white : AppColors.black,
+                    ),
+                  ),
+
+                  //--
+                  SizedBox(width: 10),
+
+                  //--
+                  Text(
+                    dateNote,
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: isDarkMode ? Colors.white : AppColors.black,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
