@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_notes/controller/drawer_controller.dart';
 import 'package:my_notes/controller/profile_controller.dart';
 import 'package:my_notes/core/constant/app_colors.dart';
+import 'package:my_notes/data/data_models/drawer_items.dart';
 import 'package:my_notes/view/widgets/search_screen_widgets/icon_button_widget.dart';
 
 class AppbarDrawerScreens extends StatelessWidget {
@@ -28,26 +29,11 @@ class AppbarDrawerScreens extends StatelessWidget {
           ),
 
           //--
-          // IconButton(
-          //   iconSize: 30,
-          //   style: const ButtonStyle(
-          //     side: WidgetStatePropertyAll(
-          //       BorderSide(color: AppColors.white, width: 3),
-          //     ),
-          //   ),
-          //   onPressed: onPressedBack,
-
-          //   icon: const Icon(Icons.keyboard_arrow_left, color: AppColors.white),
-          // ),
-
-          //--
           SizedBox(width: 20),
 
           //
           Text(
-            drawerController
-                .drawerItems[drawerController.selectedIndexItemsDrawer]
-                .title,
+            drawerItems[drawerController.selectedIndexItemsDrawer].title.tr,
             style: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w500,

@@ -35,10 +35,10 @@ class HomeScreen extends StatelessWidget {
           },
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //
             Container(
-              // height: 180,
               padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 color: AppColors.orange,
@@ -81,15 +81,12 @@ class HomeScreen extends StatelessWidget {
             //
             Padding(
               padding: EdgeInsets.all(10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Category",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: isDarkMode ? AppColors.white : AppColors.black,
-                  ),
+              child: Text(
+                "Category".tr,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: isDarkMode ? AppColors.white : AppColors.black,
                 ),
               ),
             ),

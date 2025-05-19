@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_notes/controller/profile_controller.dart';
 import 'package:my_notes/core/constant/app_colors.dart';
 
 class AppbarHome extends StatelessWidget {
@@ -34,18 +35,21 @@ class AppbarHome extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "4".tr, //"Hello !",
-                style:
-                //Theme.of(context).textTheme.bodySmall,
-                const TextStyle(color: AppColors.white, fontSize: 18),
+                "Hello".tr, //"Hello !",
+                style: const TextStyle(color: AppColors.white, fontSize: 18),
               ),
-              const Text(
-                "Amr Medhat",
-                style: TextStyle(
-                  color: AppColors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                ),
+              GetBuilder<ProfileControllerImp>(
+                builder: (profileController) {
+                  return Text(
+                    "${profileController.firstName} ${profileController.lastName}",
+                    //"Amr Medhat",
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                    ),
+                  );
+                },
               ),
             ],
           ),

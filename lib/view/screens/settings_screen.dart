@@ -4,6 +4,7 @@ import 'package:my_notes/controller/drawer_controller.dart';
 import 'package:my_notes/controller/language_controller.dart';
 import 'package:my_notes/controller/settings_controller.dart';
 import 'package:my_notes/core/constant/app_colors.dart';
+import 'package:my_notes/data/data_models/setting_items.dart';
 import 'package:my_notes/view/widgets/drawer_widgets/appbar_drawer_screens.dart';
 
 class SettingsScreen extends GetView<LanguageController> {
@@ -36,13 +37,13 @@ class SettingsScreen extends GetView<LanguageController> {
               builder: (settingController) {
                 return ListView.builder(
                   itemCount:
-                      settingsController.drawerItems.length +
+                      settingItems.length +
                       (settingsController.isLanguageDropdownVisible ? 2 : 0),
                   itemBuilder: (context, index) {
                     if (index == 0) {
                       return ListTile(
                         title: Text(
-                          settingController.drawerItems[index].title,
+                          settingItems[index].title.tr,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
@@ -51,10 +52,10 @@ class SettingsScreen extends GetView<LanguageController> {
                           ),
                         ),
                         subtitle: Text(
-                          settingController.drawerItems[index].subTitle,
+                          settingItems[index].subTitle.tr,
                           style: TextStyle(color: AppColors.grey),
                         ),
-                        trailing: settingController.drawerItems[index].icon,
+                        trailing: settingItems[index].icon,
                         onTap: () {
                           settingController.toggleLanguageDropdown();
                         },
@@ -72,7 +73,7 @@ class SettingsScreen extends GetView<LanguageController> {
                                   : null,
                           child: ListTile(
                             title: Text(
-                              index == 1 ? 'العربية' : 'English',
+                              index == 1 ? '4'.tr : '5'.tr, // "English",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight:
@@ -88,13 +89,7 @@ class SettingsScreen extends GetView<LanguageController> {
                                         : AppColors.black,
                               ),
                             ),
-                            // titleTextStyle: TextStyle(
-                            //   fontSize: 20,
-                            //   color:
-                            //       settingController.selectedLanguage == index
-                            //           ? Colors.white
-                            //           : Colors.black,
-                            // ),
+
                             onTap: () {
                               settingController.selectLanguageItem(index);
                               controller.changeLanguage(
@@ -107,12 +102,11 @@ class SettingsScreen extends GetView<LanguageController> {
                     } else {
                       return ListTile(
                         title: Text(
-                          settingController
-                              .drawerItems[settingController
+                          settingItems[settingController
                                       .isLanguageDropdownVisible
                                   ? index - 2
                                   : index]
-                              .title,
+                              .title.tr,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
@@ -121,17 +115,16 @@ class SettingsScreen extends GetView<LanguageController> {
                           ),
                         ),
                         subtitle: Text(
-                          settingController
-                              .drawerItems[settingController
+                          settingItems[settingController
                                       .isLanguageDropdownVisible
                                   ? index - 2
                                   : index]
-                              .subTitle,
+                              .subTitle
+                              .tr,
                           style: const TextStyle(color: AppColors.grey),
                         ),
                         trailing:
-                            settingController
-                                .drawerItems[settingController
+                            settingItems[settingController
                                         .isLanguageDropdownVisible
                                     ? index - 2
                                     : index]

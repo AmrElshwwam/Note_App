@@ -17,7 +17,7 @@ class RowLastNotes extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Last Notes",
+            "Last Notes".tr,
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
@@ -28,8 +28,8 @@ class RowLastNotes extends StatelessWidget {
             onPressed: () {
               Get.toNamed(AppRoutes.showAll);
             },
-            child: const Text(
-              "Show All",
+            child: Text(
+              "Show All".tr,
               style: TextStyle(
                 decoration: TextDecoration.underline,
                 decorationColor: AppColors.orange,

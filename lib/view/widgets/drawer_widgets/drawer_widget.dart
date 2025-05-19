@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_notes/controller/drawer_controller.dart';
 import 'package:my_notes/core/constant/app_colors.dart';
 import 'package:my_notes/core/constant/strings_routes.dart';
+import 'package:my_notes/data/data_models/drawer_items.dart';
 import 'package:my_notes/data/services/services.dart';
 import 'package:my_notes/view/widgets/drawer_widgets/button_logout.dart';
 import 'package:my_notes/view/widgets/drawer_widgets/item_drawer_widget.dart';
@@ -78,11 +79,11 @@ class DrawerWidget extends StatelessWidget {
               child: GetBuilder<DrawerControllerImp>(
                 builder: (drawerController) {
                   return ListView.builder(
-                    itemCount: drawerController.drawerItems.length,
+                    itemCount: drawerItems.length,
                     itemBuilder: (context, index) {
                       return ItemDrawerWidget(
-                        title: drawerController.drawerItems[index].title,
-                        icon: drawerController.drawerItems[index].iconCategory,
+                        title: drawerItems[index].title.tr,
+                        icon: drawerItems[index].iconCategory,
                         selected:
                             drawerController.selectedIndexItemsDrawer == index
                                 ? true

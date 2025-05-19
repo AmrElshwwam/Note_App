@@ -14,8 +14,9 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     DrawerControllerImp drawerController = Get.find<DrawerControllerImp>();
 
-    ProfileControllerImp profileController = Get.put(ProfileControllerImp());
-    
+    ProfileControllerImp profileController = Get.find<ProfileControllerImp>();
+
+    // ProfileControllerImp profileController = Get.put(ProfileControllerImp());
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -40,42 +41,46 @@ class ProfileScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(
-                          child: Column(
-                            children: [
-                              const CircleAvatar(
-                                backgroundColor: AppColors.orange,
-                                maxRadius: 50,
-                                child: Icon(
-                                  Icons.person_outline,
-                                  color: Colors.white,
-                                  size: 60,
-                                ),
-                              ),
+                          child: GetBuilder<ProfileControllerImp>(
+                            builder: (context) {
+                              return Column(
+                                children: [
+                                  const CircleAvatar(
+                                    backgroundColor: AppColors.orange,
+                                    maxRadius: 50,
+                                    child: Icon(
+                                      Icons.person_outline,
+                                      color: Colors.white,
+                                      size: 60,
+                                    ),
+                                  ),
 
-                              //
-                              const SizedBox(height: 10),
+                                  //
+                                  const SizedBox(height: 10),
 
-                              //
-                              Text(
-                                // "$firstName $lastName",
-                                "${profileController.firstName} ${profileController.lastName}",
+                                  //
+                                  Text(
+                                    // "$firstName $lastName",
+                                    "${profileController.firstName} ${profileController.lastName}",
 
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: "Merienda",
-                                ),
-                              ),
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "Merienda",
+                                    ),
+                                  ),
 
-                              //
-                              Text(
-                                profileController.email,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: "Merienda",
-                                ),
-                              ),
-                            ],
+                                  //
+                                  Text(
+                                    profileController.email,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: "Merienda",
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
                           ),
                         ),
 

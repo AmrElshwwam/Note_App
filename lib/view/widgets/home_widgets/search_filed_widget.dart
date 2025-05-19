@@ -7,7 +7,6 @@ class SearchFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //-- Controller Find
 
     return TextField(
       readOnly:
@@ -32,7 +31,7 @@ class SearchFieldWidget extends StatelessWidget {
         //
         filled: true,
         fillColor: AppColors.white,
-        hintText: "5".tr, //"Search",
+        hintText: "Search".tr, //"Search",
         //
         enabledBorder: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(15),

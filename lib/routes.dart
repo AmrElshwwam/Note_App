@@ -3,6 +3,7 @@ import 'package:my_notes/bindings/add_note_binding.dart';
 import 'package:my_notes/bindings/category_screen_binding.dart';
 import 'package:my_notes/bindings/details_screen_binding.dart';
 import 'package:my_notes/bindings/drawer_binding.dart';
+import 'package:my_notes/bindings/profile_binding.dart';
 import 'package:my_notes/bindings/search_screen_binding.dart';
 import 'package:my_notes/bindings/select_category_binding.dart';
 import 'package:my_notes/bindings/signin_binding.dart';
@@ -37,7 +38,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
     name: AppRoutes.masterScreen,
     page: () => const MasterScreen(),
-    bindings: [DrawerBinding()],
+    bindings: [DrawerBinding(), ProfileBinding()],
   ),
 
   GetPage(name: AppRoutes.homeScreen, page: () => const HomeScreen()),
