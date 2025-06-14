@@ -102,7 +102,7 @@ class DrawerWidget extends StatelessWidget {
             ButtonLogout(
               nameButton: 'Logout',
               onPressed: () {
-                Get.toNamed(AppRoutes.signinScreen);
+                Get.offAllNamed(AppRoutes.signinScreen);
               },
             ),
           ],

@@ -66,6 +66,62 @@ class SignupScreen extends StatelessWidget {
                                 //
                                 const SizedBox(height: 20),
 
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: CustomTextField(
+                                        //>> Email
+                                        valid: (val) {
+                                          return validInputSignup(
+                                            val!,
+                                            3,
+                                            10,
+                                            "firstName",
+                                          );
+                                        },
+                                        myController:
+                                            signupController.firstName,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        hintText: "First Name",
+                                        labelName: const Text("  First Name  "),
+                                        icon: const Icon(
+                                          Icons.abc,
+                                          color: AppColors.orange,
+                                        ),
+                                      ),
+                                    ),
+
+                                    SizedBox(width: 10),
+
+                                    Expanded(
+                                      child: CustomTextField(
+                                        //>> Email
+                                        valid: (val) {
+                                          return validInputSignup(
+                                            val!,
+                                            3,
+                                            10,
+                                            "lastName",
+                                          );
+                                        },
+                                        myController: signupController.lastName,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        hintText: "Last Name",
+                                        labelName: const Text("  Last Name  "),
+                                        icon: const Icon(
+                                          Icons.abc,
+                                          color: AppColors.orange,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                                //--
+                                const SizedBox(height: 15),
+
                                 //
                                 CustomTextField(
                                   //>> Email
@@ -79,7 +135,7 @@ class SignupScreen extends StatelessWidget {
                                   },
                                   myController: signupController.email,
                                   keyboardType: TextInputType.emailAddress,
-                                  hintText: "Enter Your Email",
+                                  hintText: "Your Email",
                                   labelName: const Text("  Email  "),
                                   icon: const Icon(
                                     Icons.email,
@@ -103,7 +159,7 @@ class SignupScreen extends StatelessWidget {
                                   },
                                   myController: signupController.password,
                                   keyboardType: TextInputType.visiblePassword,
-                                  hintText: "Enter Your Password",
+                                  hintText: "Password",
                                   labelName: const Text("  Password  "),
                                   icon: const Icon(
                                     Icons.lock,
@@ -128,7 +184,7 @@ class SignupScreen extends StatelessWidget {
                                   myController:
                                       signupController.confirmPassword,
                                   keyboardType: TextInputType.visiblePassword,
-                                  hintText: "Enter Your Confirm Password",
+                                  hintText: "Confirm Password",
                                   labelName: const Text("  Confirm Password  "),
                                   icon: const Icon(
                                     Icons.lock,

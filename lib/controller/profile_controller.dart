@@ -7,12 +7,12 @@ abstract class ProfileController extends GetxController {
   TextEditingController? firstNameController;
   TextEditingController? lastNameController;
   TextEditingController? emailController;
-  TextEditingController? mobileController;
+  TextEditingController? passwordController;
 
   late String email;
   late String firstName;
   late String lastName;
-  late String mobile;
+  late String password;
 
   // String? oldEmail;
   // String? oldFirstName;
@@ -26,19 +26,19 @@ class ProfileControllerImp extends ProfileController {
     MyServices myServices = Get.find();
     // await myServices.sharedPreferences.clear();
 
-    email = myServices.sharedPreferences.getString("Email") ?? "";
     firstName =
         myServices.sharedPreferences.getString("FirstName") ??
         ""; // تعيين قيمة افتراضية
     lastName =
         myServices.sharedPreferences.getString("LastName") ??
         ""; // تعيين قيمة افتراضية
-    mobile = myServices.sharedPreferences.getString("Mobile") ?? "";
+    email = myServices.sharedPreferences.getString("Email") ?? "";
+    password = myServices.sharedPreferences.getString("Password") ?? "";
 
-    emailController = TextEditingController(text: email);
     firstNameController = TextEditingController(text: firstName);
     lastNameController = TextEditingController(text: lastName);
-    mobileController = TextEditingController(text: mobile);
+    emailController = TextEditingController(text: email);
+    passwordController = TextEditingController(text: password);
 
     super.onInit();
   }
@@ -56,21 +56,21 @@ class ProfileControllerImp extends ProfileController {
       SnackbarHelper.error("Error", "Email cannot be empty");
       return;
     }
-    if (mobileController!.text.isEmpty) {
-      SnackbarHelper.error("Error", "Mobile Number cannot be empty");
+    if (passwordController!.text.isEmpty) {
+      SnackbarHelper.error("Error", "password cannot be empty");
       return;
     }
     email = emailController!.text;
     firstName = firstNameController!.text;
     lastName = lastNameController!.text;
-    mobile = mobileController!.text;
+    password = passwordController!.text;
 
     // Save to SharedPreferences
     MyServices myServices = Get.find();
     myServices.sharedPreferences.setString("Email", email);
     myServices.sharedPreferences.setString("FirstName", firstName);
     myServices.sharedPreferences.setString("LastName", lastName);
-    myServices.sharedPreferences.setString("Mobile", mobile);
+    myServices.sharedPreferences.setString("Password", password);
 
     update();
 
@@ -81,5 +81,14 @@ class ProfileControllerImp extends ProfileController {
     );
 
     // showSnackbar(title: "Saved", message: "Profile data updated successfully");
+  }
+
+  @override
+  void onClose() {
+    firstNameController!.dispose();
+    lastNameController!.dispose();
+    emailController!.dispose();
+    passwordController!.dispose();
+    super.onClose();
   }
 }

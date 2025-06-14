@@ -10,7 +10,8 @@ abstract class SignupController extends GetxController {
 
   //--
 
-  late TextEditingController userName;
+  late TextEditingController firstName;
+  late TextEditingController lastName;
   late TextEditingController email;
   late TextEditingController password;
   late TextEditingController confirmPassword;
@@ -23,7 +24,8 @@ abstract class SignupController extends GetxController {
 class SignupControllerImp extends SignupController {
   @override
   void onInit() {
-    userName = TextEditingController();
+    firstName = TextEditingController();
+    lastName = TextEditingController();
     email = TextEditingController();
     password = TextEditingController();
     confirmPassword = TextEditingController();
@@ -36,6 +38,8 @@ class SignupControllerImp extends SignupController {
     if (formdata!.validate()) {
       MyServices myServices = Get.find();
 
+      myServices.sharedPreferences.setString("FirstName", firstName.text);
+      myServices.sharedPreferences.setString("LastName", lastName.text);
       myServices.sharedPreferences.setString("Email", email.text);
       myServices.sharedPreferences.setString("Password", password.text);
 
@@ -59,16 +63,16 @@ class SignupControllerImp extends SignupController {
           }
         }
       });
-
     }
   }
 
-  @override
-  void onClose() {
-    userName.dispose();
-    email.dispose();
-    password.dispose();
-    confirmPassword.dispose();
-    super.onClose();
-  }
+      @override
+      void onClose() {
+        firstName.dispose();
+        lastName.dispose();
+        email.dispose();
+        password.dispose();
+        confirmPassword.dispose();
+        super.onClose();
+      }
 }

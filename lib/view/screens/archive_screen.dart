@@ -22,14 +22,10 @@ class ArchiveScreen extends StatelessWidget {
 
           //--
           Expanded(
-            child: SizedBox(
-              height: 150,
-              width: 150,
-              child: const Center(
-                child: Text(
-                  "Archive Screen",
-                  style: TextStyle(fontSize: 18, color: AppColors.grey),
-                ),
+            child: const Center(
+              child: Text(
+                "No archived notes",
+                style: TextStyle(fontSize: 18, color: AppColors.grey),
               ),
             ),
           ),

@@ -16,12 +16,14 @@ class ScrollLastNotes extends StatelessWidget {
           child: GetBuilder<LoadNotesControllerImp>(
             builder: (controller) {
               if (controller.notes.isEmpty) {
-                return Text(
-                  "No Notes Available !",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.grey,
+                return Center(
+                  child: Text(
+                    "No Notes Available !",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.grey,
+                    ),
                   ),
                 );
               }

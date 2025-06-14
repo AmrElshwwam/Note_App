@@ -133,9 +133,9 @@ class ProfileScreen extends StatelessWidget {
                             const SizedBox(height: 10),
 
                             TitleAndTextFieldWidget(
-                              titleTextField: "Mobile Number",
-                              myController: profileController.mobileController,
-                              hintText: "Mobile Number",
+                              titleTextField: "Password",
+                              myController: profileController.passwordController,
+                              hintText: "Password",
                             ),
 
                             //...............................
